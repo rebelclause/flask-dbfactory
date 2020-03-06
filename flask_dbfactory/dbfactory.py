@@ -33,9 +33,6 @@ class DBFactory():
             app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{dbname}.sqlite"
 
         try:
-            # app.config.__setitem__('SQLALCHEMY_TRACK_MODIFICATIONS', False)
-            # get the first db from the list on the class, all others created on the fly from variable reuse
-            # app.config.__setitem__('SQLALCHEMY_DATABASE_URI', DBFactory.dblist[0].get('uri')) # avoid key error
             app.config['SQLALCHEMY_BINDS'] = {
                 DBFactory.dblist[0]['name']: app.config.get('SQLALCHEMY_DATABASE_URI'), # invite key error
                 }
@@ -43,13 +40,6 @@ class DBFactory():
             print(f"Error: {e}")
 
     def new_db(self, dbname):
-        # try:
-        #     if DBFactory.dblist.__len__() <= 0:
-        #         # self.app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{dbname}.sqlite"
-        #         raise ValueError
-        # except ValueError as e:
-        #     print("ValueError on DBFactory init.", e)
-
         idx = DBFactory.dblist.__len__()
         DBFactory.dblist.append({"name": dbname, "uri": f"sqlite:///{dbname}.sqlite", "idx": f"{idx}"})
         print("DBFactory.dblist entry:" + "{" + "\"name\":" + "\"" + dbname + "\"" + "," + "\"uri\":" + "\"" + f"sqlite:///{dbname}.sqlite" + "\", " + "\"idx\":" + f"{idx}" + "}")

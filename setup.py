@@ -10,7 +10,7 @@ from setuptools import setup
 setup(
     name='Flask-DBFactory',
     version='1.0',
-    url='http://example.com/flask-sqlite3/',
+    url='',
     license='BSD',
     author='Tim Pozza',
     author_email='dbfactory@sunlasso.com',

@@ -124,16 +124,4 @@ class Comments(Bind, U_Mixin, db.Model):
 if __name__ == "__main__":
     print(f"List of all DB binds in DBFactory.dblist:")
     pp.pprint(list(DBFactory.dblist))
-
-    # # TODO: ? new feature ?
-    # # list of indicies, single named db already in binds, slice of binds
-    # # requires rerun of file, or a separate list, the original containing the inline generated one
-    # # requires the SQLALCHEMY_DATABASE_URI to be set, both when single db is selected, and in the event of a subset
-    # # with proper __bind_key__ only the selected model / db will be generated
-    #
-    # mydb.bind_only('bogus_or_bonus')
-    # db.create_all()
-    #
-    # # restore the original SQLALCHEMY_BINDS list
-    # mydb.bind_all()
     # db.create_all()

@@ -1,4 +1,4 @@
-#flask_DBFactory
+# flask_DBFactory
 
 Simple import method, to inline SQLAlchemy DB/model creation, for fast ORM prototyping setups.
 
@@ -14,30 +14,29 @@ Inlining is done with the SQLAlchemy directive `__bind_key__`. In the example th
 
 As shown, the directive also makes it possible to link tables through a common parent class, to be inherited by all tables in a model, or overridden.
 
-####Use
+#### Use
 Like Flask_SQLAlchemy, simply import DBFactory and instantiate it after instantiating your Flask app.
 
-#####Import:
+##### Import:
 
 `from flask_dbfactory import DBFactory`
 
-#####Create instance:
+##### Create instance:
 Below your declared flask instance, usually `app`:
 
 `dbfactory = DBFactory(app)`
 
 This will create a 'main' database, which you can use or ignore.
 
-#####Inline declaration:
+##### Inline declaration:
 
 `DB = dbfactory.new_db('my_model_db_name')`
 
-#####Use:
+##### Use:
 
 Run `factory_floor.py` in your REPL, then you can inspect your models, and, finally, `db.create_all()` to create all.
 
-
-###Possible Features:
+### Possible Features:
 
 - Selectively create the database for any one of the declared binds.
 

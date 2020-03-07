@@ -2,7 +2,7 @@
 
 Simple import method, to inline SQLAlchemy DB/model creation, for fast ORM prototyping setups.
 
-**About**
+### About
 
 DBFactory is a simple Flask instance class which makes it possible to bind declarations of SQLAlchemy model/database relations as they are needed in a model file.
 
@@ -14,7 +14,7 @@ Inlining is done with the SQLAlchemy directive `__bind_key__`. In the example th
 
 As shown, the directive also makes it possible to link tables through a common parent class, to be inherited by all tables in a model, or overridden.
 
-#### Use
+### Use
 Like Flask_SQLAlchemy, simply import DBFactory and instantiate it after instantiating your Flask app.
 
 ##### Import:
@@ -22,6 +22,7 @@ Like Flask_SQLAlchemy, simply import DBFactory and instantiate it after instanti
 `from flask_dbfactory import DBFactory`
 
 ##### Create instance:
+
 Below your declared flask instance, usually `app`:
 
 `dbfactory = DBFactory(app)`
@@ -36,8 +37,9 @@ This will create a 'main' database, which you can use or ignore.
 
 Run `factory_floor.py` in your REPL, then you can inspect your models, and, finally, `db.create_all()` to create all.
 
-### Possible Features:
+### Feature:
 
-- Selectively create the database for any one of the declared binds.
+Selectively create a database from its bound model, as listed in `app.config['SQLALCHEMY_BINDS']`
 
+`db.create_all(bind="joins")`
 

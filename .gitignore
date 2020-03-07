@@ -130,3 +130,10 @@ dmypy.json
 
 # PyCharm
 /.idea/
+
+# VSCODE
+/.vscode/
+
+# flask-dbfactory
+*.sqlite
+

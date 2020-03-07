@@ -28,20 +28,26 @@ class DBFactory():
 
     def init_app(self, app, dbname):
         DBFactory.extant = True
-        init_uri = self.new_db(dbname)
+
         if DBFactory.dblist.__len__() <= 0:
             app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{dbname}.sqlite"
+
+        idx = DBFactory.dblist.__len__()
+        DBFactory.dblist.append({'name': dbname, 'uri': f"sqlite:///{dbname}.sqlite", 'idx': f"{idx}"})
 
         try:
             app.config['SQLALCHEMY_BINDS'] = {
                 DBFactory.dblist[0]['name']: app.config.get('SQLALCHEMY_DATABASE_URI'), # invite key error
-                }
+            }
         except KeyError as e:
             print(f"Error: {e}")
 
+        init_uri = self.new_db(dbname)
+
     def new_db(self, dbname):
         idx = DBFactory.dblist.__len__()
-        DBFactory.dblist.append({"name": dbname, "uri": f"sqlite:///{dbname}.sqlite", "idx": f"{idx}"})
+        DBFactory.dblist.append({'name': dbname, 'uri': f"sqlite:///{dbname}.sqlite", 'idx': f"{idx}"})
+        self.app.config['SQLALCHEMY_BINDS'][dbname] = DBFactory.dblist[idx]['uri']
         print("DBFactory.dblist entry:" + "{" + "\"name\":" + "\"" + dbname + "\"" + "," + "\"uri\":" + "\"" + f"sqlite:///{dbname}.sqlite" + "\", " + "\"idx\":" + f"{idx}" + "}")
         return {"name": dbname, "uri": f"sqlite:///{dbname}.sqlite", "idx": f"{idx}"}
 

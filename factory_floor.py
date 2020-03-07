@@ -48,9 +48,9 @@ class U_Mixin(db.Model): # (object) if not __abstract__ = True
 
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
 
-
-DB = mydb.new_db("one_to_many")
-print("DB looks like: ", DB)
+DB = DBFactory.dblist[0]
+# DB = mydb.new_db("one_to_many")
+# print("DB looks like: ", DB)
 
 @dataclass
 class User(U_Mixin, UserMixin, db.Model):

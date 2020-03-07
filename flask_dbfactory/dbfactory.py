@@ -12,10 +12,9 @@ class DBFactory():
 
         try:
             if DBFactory.extant == True:
-                raise TypeError
-        except TypeError as e:
-            print("Only one instance of DBFactory is allowed.", {e})
-            # exit
+                raise NotImplementedError('Only one instance of DBFactory is supported.')
+        except NotImplementedError as e:
+            raise
 
         if len(args) >=1:
             for _ in args:
@@ -41,8 +40,6 @@ class DBFactory():
             }
         except KeyError as e:
             print(f"Error: {e}")
-
-        init_uri = self.new_db(dbname)
 
     def new_db(self, dbname):
         idx = DBFactory.dblist.__len__()
